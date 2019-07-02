@@ -1,3 +1,5 @@
+# $Revision:  $
+# $Date:  $
 
 ALTER TABLE pubsubItem CHANGE payload payload MEDIUMTEXT;
 

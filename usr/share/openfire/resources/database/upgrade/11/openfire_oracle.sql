@@ -1,3 +1,5 @@
+-- $Revision:  $
+-- $Date:  $
 
 CREATE TABLE jivePresence (
   username              VARCHAR2(64)    NOT NULL,

@@ -1,3 +1,5 @@
+-- $Revision:  $
+-- $Date:  $
 
 -- Increase size of username field
 

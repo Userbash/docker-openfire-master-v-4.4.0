@@ -1,10 +1,8 @@
+// $Revision: 1650 $
+// $Date: 2005-07-20 00:18:17 -0300 (Wed, 20 Jul 2005) $
 
 CREATE TABLE ofUser (
   username              VARCHAR(64)     NOT NULL,
-  storedKey             VARCHAR(32),
-  serverKey             VARCHAR(32),
-  salt                  VARCHAR(32),
-  iterations            INTEGER,
   plainPassword         VARCHAR(32),
   encryptedPassword     VARCHAR(255),
   name                  VARCHAR(100),
@@ -33,6 +31,15 @@ CREATE TABLE ofUserFlag (
 );
 CREATE INDEX ofUserFlag_sTime_idx ON ofUserFlag (startTime);
 CREATE INDEX ofUserFlag_eTime_idx ON ofUserFlag (endTime);
+
+
+CREATE TABLE ofPrivate (
+  username              VARCHAR(64)     NOT NULL,
+  name                  VARCHAR(100)    NOT NULL,
+  namespace             VARCHAR(200)    NOT NULL,
+  privateData           LONGVARCHAR     NOT NULL,
+  CONSTRAINT ofPrivate_pk PRIMARY KEY (username, name, namespace)
+);
 
 
 CREATE TABLE ofOffline (
@@ -114,8 +121,6 @@ CREATE TABLE ofID (
 CREATE TABLE ofProperty (
   name        VARCHAR(100)  NOT NULL,
   propValue   VARCHAR(4000) NOT NULL,
-  encrypted   INTEGER,
-  iv          CHAR(24),
   CONSTRAINT ofProperty_pk PRIMARY KEY (name)
 );
 
@@ -210,7 +215,6 @@ CREATE TABLE ofMucRoom (
   useReservedNick     INTEGER       NOT NULL,
   canChangeNick       INTEGER       NOT NULL,
   canRegister         INTEGER       NOT NULL,
-  allowpm             INTEGER       NULL,
   CONSTRAINT ofMucRoom_pk PRIMARY KEY (serviceID, name)
 );
 CREATE INDEX ofMucRoom_roomid_idx ON ofMucRoom (roomID);
@@ -244,16 +248,13 @@ CREATE TABLE ofMucMember (
 
 CREATE TABLE ofMucConversationLog (
   roomID              BIGINT        NOT NULL,
-  messageID         BIGINT      NOT NULL,
   sender              VARCHAR(1024) NOT NULL,
   nickname            VARCHAR(255)  NULL,
   logTime             CHAR(15)      NOT NULL,
   subject             VARCHAR(255)  NULL,
-  body                LONGVARCHAR   NULL,
-  stanza             LONGVARCHAR    NULL
+  body                LONGVARCHAR   NULL
 );
 CREATE INDEX ofMucConversationLog_time_idx ON ofMucConversationLog (logTime);
-CREATE INDEX ofMucConversationLog_msg_id ON ofMucConversationLog (messageID);
 
 // PubSub Tables
 
@@ -370,9 +371,8 @@ INSERT INTO ofID (idType, id) VALUES (18, 1);
 INSERT INTO ofID (idType, id) VALUES (19, 1);
 INSERT INTO ofID (idType, id) VALUES (23, 1);
 INSERT INTO ofID (idType, id) VALUES (26, 2);
-INSERT INTO ofID (idType, id) VALUES (27, 1);
 
-INSERT INTO ofVersion (name, version) VALUES ('openfire', 30);
+INSERT INTO ofVersion (name, version) VALUES ('openfire', 21);
 
 // Entry for admin user
 INSERT INTO ofUser (username, plainPassword, name, email, creationDate, modificationDate)
@@ -384,8 +384,8 @@ INSERT INTO ofMucService (serviceID, subdomain, isHidden) VALUES (1, 'conference
 // The value is the size in megabytes that the .log file can reach before an automatic
 // checkpoint occurs. A checkpoint rewrites the .script file and clears the .log file
 // see http://www.hsqldb.org/doc/guide/ch04.html#hsqldb.log_size
-SET FILES LOG SIZE 20;
+SET LOGSIZE 20
 
 // This controls the frequency of file sync for the log file.
 // see http://www.hsqldb.org/doc/guide/ch09.html#set_write_delay-section
-SET FILES WRITE DELAY 1000 MILLIS;
+SET WRITE_DELAY 1000 MILLIS;

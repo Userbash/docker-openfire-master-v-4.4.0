@@ -1,3 +1,5 @@
+/* $Revision:  $           */
+/* $Date:  $               */
 
 /* Increase size of username field */
 ALTER TABLE jiveUser DROP CONSTRAINT jiveUser_pk;

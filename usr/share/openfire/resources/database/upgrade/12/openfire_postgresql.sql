@@ -1,3 +1,5 @@
+-- $Revision:  $
+-- $Date:  $
 
 ALTER TABLE mucConversationLog RENAME COLUMN time TO logTime;
 

@@ -38,9 +38,9 @@
   <!--
     <oneTimeAccessToken>secretToken</oneTimeAccessToken>
     -->  
-  <connectionProvider>
-    <className>org.jivesoftware.database.EmbeddedConnectionProvider</className>
-  </connectionProvider> 
-  <setup>true</setup> 
-  <fqdn>094f0fa15627</fqdn>
+  <connectionProvider> 
+    <className>org.jivesoftware.database.EmbeddedConnectionProvider</className> 
+  </connectionProvider>  
+  <setup>true</setup>  
+  <fqdn>xmpp.megaflowers.ru</fqdn> 
 </jive>

@@ -1,3 +1,5 @@
+/* $Revision:  $ */
+/* $Date:  $ */
 
 /* Drop old columns of pubSubNode */
 ALTER TABLE pubsubNode DROP COLUMN contacts;

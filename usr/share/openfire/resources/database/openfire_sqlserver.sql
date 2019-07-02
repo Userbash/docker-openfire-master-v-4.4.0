@@ -1,10 +1,8 @@
+/* $Revision: 1650 $                                       */
+/* $Date: 2005-07-20 00:18:17 -0300 (Wed, 20 Jul 2005) $   */
 
 CREATE TABLE ofUser (
   username              NVARCHAR(64)    NOT NULL,
-  storedKey             VARCHAR(32),
-  serverKey             VARCHAR(32),
-  salt                  VARCHAR(32),
-  iterations            INTEGER,
   plainPassword         NVARCHAR(32),
   encryptedPassword     NVARCHAR(255),
   name                  NVARCHAR(100),
@@ -33,6 +31,15 @@ CREATE TABLE ofUserFlag (
 );
 CREATE INDEX ofUserFlag_sTime_idx ON ofUserFlag (startTime ASC);
 CREATE INDEX ofUserFlag_eTime_idx ON ofUserFlag (endTime ASC);
+
+
+CREATE TABLE ofPrivate (
+  username              NVARCHAR(64)    NOT NULL,
+  name                  NVARCHAR(100)   NOT NULL,
+  namespace             NVARCHAR(200)   NOT NULL,
+  privateData           NTEXT           NOT NULL,
+  CONSTRAINT ofPrivate_pk PRIMARY KEY (username, name, namespace)
+);
 
 
 CREATE TABLE ofOffline (
@@ -117,8 +124,6 @@ CREATE TABLE ofID (
 CREATE TABLE ofProperty (
   name        NVARCHAR(100) NOT NULL,
   propValue   NTEXT NOT NULL,
-  encrypted   INTEGER,
-  iv          CHAR(24),
   CONSTRAINT ofProperty_pk PRIMARY KEY (name)
 );
 
@@ -213,7 +218,6 @@ CREATE TABLE ofMucRoom (
   useReservedNick     INT           NOT NULL,
   canChangeNick       INT           NOT NULL,
   canRegister         INT           NOT NULL,
-  allowpm             INT           NULL,
   CONSTRAINT ofMucRoom_pk PRIMARY KEY (serviceID, name)
 );
 CREATE INDEX ofMucRoom_roomid_idx on ofMucRoom(roomID);
@@ -247,16 +251,13 @@ CREATE TABLE ofMucMember (
 
 CREATE TABLE ofMucConversationLog (
   roomID              INT            NOT NULL,
-  messageID         INT           NOT NULL,
   sender              NVARCHAR(1024) NOT NULL,
   nickname            NVARCHAR(255)  NULL,
   logTime             CHAR(15)       NOT NULL,
   subject             NVARCHAR(255)  NULL,
-  body                NTEXT          NULL,
-  stanza                NTEXT          NULL
+  body                NTEXT          NULL
 );
 CREATE INDEX ofMucConversationLog_time_idx ON ofMucConversationLog (logTime);
-CREATE INDEX ofMucConversationLog_msg_id ON ofMucConversationLog (messageID);
 
 /* PubSub Tables */
 
@@ -373,9 +374,8 @@ INSERT INTO ofID (idType, id) VALUES (18, 1);
 INSERT INTO ofID (idType, id) VALUES (19, 1);
 INSERT INTO ofID (idType, id) VALUES (23, 1);
 INSERT INTO ofID (idType, id) VALUES (26, 2);
-INSERT INTO ofID (idType, id) VALUES (27, 1);
 
-INSERT INTO ofVersion (name, version) VALUES ('openfire', 30);
+INSERT INTO ofVersion (name, version) VALUES ('openfire', 21);
 
 /* Entry for admin user */
 INSERT INTO ofUser (username, plainPassword, name, email, creationDate, modificationDate)

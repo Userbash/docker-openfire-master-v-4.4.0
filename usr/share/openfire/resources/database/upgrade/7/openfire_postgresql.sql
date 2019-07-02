@@ -1,3 +1,5 @@
+-- $Revision:  $
+-- $Date:  $
 
 -- Create PubSub Tables
 

@@ -1,3 +1,5 @@
+/* $Revision:  $  */
+/* $Date:  $      */
 
 sp_rename 'jiveRemoteServerConf.domain', 'xmppDomain';
 
