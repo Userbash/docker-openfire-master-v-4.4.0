@@ -1,0 +1,10 @@
+openfire:  
+  build: ./openfire
+  ports:
+    - "9090:9090"
+    - "5222:5222"
+    - "7777:7777"
+  volumes:
+    - ./usr/share/openfire:/usr/share/openfire:rw
+    - ./var/lib/openfire:/var/lib/openfire:rw
+    - ./var/log/openfire:/var/log/openfire:rw
