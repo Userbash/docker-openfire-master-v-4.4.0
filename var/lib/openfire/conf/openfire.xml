@@ -42,5 +42,5 @@
     <className>org.jivesoftware.database.EmbeddedConnectionProvider</className> 
   </connectionProvider>  
   <setup>true</setup>  
-  <fqdn>xmpp.megaflowers.ru</fqdn> 
+  <fqdn>9ea49ff52ee7</fqdn> 
 </jive>

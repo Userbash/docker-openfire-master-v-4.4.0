@@ -1,0 +1,9 @@
+2020.09.28 13:20:51 INFO  [Thread-1]: hsqldb.db.HSQLDB74D4CE661B.ENGINE - Database closed
+2020.09.28 14:04:52 INFO  [Thread-2]: hsqldb.db.HSQLDB74D4CE661B.ENGINE - Database closed
+2020.09.28 14:09:03 INFO  [Thread-2]: hsqldb.db.HSQLDB74D4CE661B.ENGINE - Database closed
+2020.09.28 14:54:52 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
+2020.09.28 15:01:40 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
+2020.09.28 15:04:37 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
+2020.09.28 15:19:47 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
+2020.09.28 15:27:29 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
+2020.09.28 15:34:33 INFO  [Thread-2]: hsqldb.db.HSQLDB6AD5D9F291.ENGINE - Database closed
